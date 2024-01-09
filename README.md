@@ -46,6 +46,12 @@ php artisan migrate:fresh --seed
 php artisan storage:link
 # Create cache directory
 mkdir public/storage/cache
+
+php artisan serve
+
+# Install front
+npm i
+npm run dev
 ```
 
 ## **Infos**

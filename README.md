@@ -1,5 +1,5 @@
 # **TP - Audit Webservice - MDS M2DEV**
-Projet web lié au cours d'audit du M2 à MyDigitalSchool
+Projet web lié au cours d'audit du M2 DEV à MyDigitalSchool
 
 # **Technos**
 PHP 8
@@ -55,4 +55,4 @@ mkdir public/storage/cache
 En lançant : php artisan migrate:fresh --seed , la BDD est alimentée comme ceci : 
 - email : test@example.com ; password : password
 - email : test2@example.com ; password : password
-etc...
+- etc...

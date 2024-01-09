@@ -23,13 +23,13 @@ DB_USERNAME=root
 DB_PASSWORD=  
 ```
 
->If you use WAMP or XAMPP and you have created database called `tp_audit_webservice`, it's will be like this:
->
->```js
->DB_DATABASE=tp_audit_webservice
->DB_USERNAME=root
->DB_PASSWORD=
->```
+If you use WAMP or XAMPP and you have created database called `tp_audit_webservice`, it's will be like this:
+
+```js
+DB_DATABASE= tp_audit_webservice
+DB_USERNAME=root
+DB_PASSWORD=  
+```
 
 ---
 
@@ -53,10 +53,6 @@ mkdir public/storage/cache
 - Comme Laravel met en place le hashage du mot de passe depuis le back, il a fallu changer le fonctionnement pour que cela se fasse côté front via CryptoJS.
 
 En lançant : php artisan migrate:fresh --seed , la BDD est alimentée comme ceci : 
-- email : test@example.com
-- password : password
-
-- email : test2@example.com
-- password : password
-
+- email : test@example.com ; password : password
+- email : test2@example.com ; password : password
 etc...

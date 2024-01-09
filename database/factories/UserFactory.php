@@ -2,8 +2,9 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
@@ -17,11 +18,32 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+
+        $password = "password";
+        $hashs = ['sha1', 'sha256', 'md5'];
+        $randomHash = $hashs[array_rand($hashs)];
+
+         switch ($randomHash) {
+            case 'sha1':
+                $hashedPassword = sha1($password);
+                break;
+            case 'sha256':
+                $hashedPassword = hash('sha256', $password);
+                break;
+            case 'md5':
+                $hashedPassword = md5($password);
+                break;
+            default:
+                $hashedPassword = Hash::make($password); // Bcrypt par défaut
+                break;
+        }
+
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'password' => $hashedPassword,
+            'hash_used' => $randomHash, 
             'remember_token' => Str::random(10),
         ];
     }

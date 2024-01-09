@@ -56,3 +56,5 @@ En lançant : php artisan migrate:fresh --seed , la BDD est alimentée comme cec
 - email : test@example.com ; password : password
 - email : test2@example.com ; password : password
 - etc...
+
+Les logs sont dans storage/logs/laravel.log

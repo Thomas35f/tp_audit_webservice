@@ -2,10 +2,10 @@
 Projet web lié au cours d'audit du M2 DEV à MyDigitalSchool
 
 # **Technos**
-PHP 8
-Composer 2
-Laravel 9
-node 16.17.0
+- PHP 8
+- Composer 2
+- Laravel 9
+- node 16.17.0
 
 ## **I. Setup**
 

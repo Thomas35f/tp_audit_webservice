@@ -53,7 +53,7 @@ mkdir public/storage/cache
 - Comme Laravel met en place le hashage du mot de passe depuis le back, il a fallu changer le fonctionnement pour que cela se fasse côté front via le CDN CryptoJS.
 
 En lançant : php artisan migrate:fresh --seed , la BDD est alimentée comme ceci :
-- email : test@example.com ; password : password
+- email : test1@example.com ; password : password
 - email : test2@example.com ; password : password
 - etc...
 

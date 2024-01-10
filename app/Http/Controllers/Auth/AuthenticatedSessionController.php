@@ -27,23 +27,36 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
+        // Utilisation du middleware throttle : maximum 5 requêtes toutes les 3 minutes
+        $this->middleware('throttle:5,3')->only('store');
+        
         $user = User::where('email', $request->email)->first();
+        $reason = "";
+
+        Log::info(['Connexion attempt - PORT user' => $request->getPort(),
+                    'Connexion attempt - IP user' => $request->ip()]);
 
         if ($user) {
 
-            Log::info('New user founded : ' . $user);
+            Log::info('A user attempts to connect : ' . $user);
 
             if ($request->password === $user->password) {
-                Log::info('Authentification : SUCCESS');
                 // Authentification réussie
+                Log::info(['Authentification' => 'SUCCESS','Hash_used' => $request->hashAlgorithm]);
                 Auth::login($user);
                 $request->session()->regenerate();
                 return redirect()->intended(RouteServiceProvider::HOME);
             }
+
+            $reason = "PASSWORD INCORRECT";
+        }else{
+            $reason = "USER INCORRECT";
         }
 
         // Authentification échouée
-        Log::info('Authentification : FAILED');
+        $fail = ['Authentification' => 'FAILED',
+        'Reason' => $reason];
+        Log::info($fail);
         return redirect()->route('login')->withErrors(['error' => 'Identifiants invalides']);
     }
 
